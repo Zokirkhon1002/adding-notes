@@ -33,7 +33,7 @@ body {
 .note {
     background-color: rgb(241, 241, 122);
     box-shadow: 0 0 10px 4px rgb(0 0 0/20%);
-    margin: 30px 20px;
+    margin: 40px 20px;
     height: 400px;
     width: 400px;
 }
@@ -50,6 +50,31 @@ body {
     cursor: pointer;
     font-size: 1rem;
     margin-left: 0.5rem;
+}
+input::placeholder {
+  color: #fff;
+  text-align: center;
+
+}
+.theme {
+  position: absolute;
+  left: 2rem;
+  width: 70%;
+  font-size: 20px;
+  text-align: center;
+  background-color: transparent;
+  color: fff;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color:#fff;
+  font-family: inherit;
+
+}
+.theme:active {
+  outline: none;
+}
+.theme:focus {
+  outline: none;
 }
 .main {
     padding: 20px;
