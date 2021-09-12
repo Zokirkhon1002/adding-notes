@@ -1,20 +1,7 @@
 let add_btn = document.getElementById("add"),
   notes = JSON.parse(localStorage.getItem("notes"));
 
-
-function localJoy(e){
-  const theme = document.getElementById("theme");
-  const jsonString = JSON.stringify(e.value);
-  localStorage.setItem("Value", jsonString);
-  const str = localStorage.getItem("Value");
-  const parseString = JSON.parse(str);
-  e.value = parseString;
-
-
-
-}
-
-if(notes) {
+if (notes) {
   notes.forEach((note) => addNewNote(note));
 }
 add_btn.addEventListener("click", () => {
@@ -27,7 +14,7 @@ function addNewNote(text = "") {
 
   note.innerHTML = `
 <div class="tools">
-    <input id="theme" class="theme" onchange="localJoy(this)" value=""></input>
+    <input id="theme" class="theme" value="Theme"></input>
     <button class="edit"><i class="fas fa-edit"></i></button>
     <button class="delete"><i class="fas fa-trash-alt"></i></button>
 </div>
@@ -40,7 +27,6 @@ function addNewNote(text = "") {
     del_btn = note.querySelector(".delete"),
     main = note.querySelector(".main"),
     text_area = note.querySelector("textarea");
-
 
   text_area.value = text;
   main.innerHTML = marked(text);
@@ -56,7 +42,6 @@ function addNewNote(text = "") {
     text_area.classList.toggle("hidden");
   });
 
-
   text_area.addEventListener("input", (e) => {
     const { value } = e.target;
     main.innerHTML = marked(value);
@@ -64,22 +49,15 @@ function addNewNote(text = "") {
     updateLS();
   });
 
-  
-
-
   document.body.appendChild(note);
 }
 
 function updateLS() {
   const notesText = document.querySelectorAll("textarea");
 
-
   const notes = [];
 
-
-  notesText.forEach(note => notes.push(note.value));
-
-
+  notesText.forEach((note) => notes.push(note.value));
 
   localStorage.setItem("notes", JSON.stringify(notes));
 }
