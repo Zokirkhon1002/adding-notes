@@ -57,9 +57,7 @@ input::placeholder {
 
 }
 .theme {
-  position: absolute;
-  left: 2rem;
-  width: 70%;
+  width: 200px;
   font-size: 20px;
   text-align: center;
   background-color: transparent;
