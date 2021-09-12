@@ -1,6 +1,19 @@
 let add_btn = document.getElementById("add"),
   notes = JSON.parse(localStorage.getItem("notes"));
 
+
+function localJoy(e){
+  const theme = document.getElementById("theme");
+  const jsonString = JSON.stringify(e.value);
+  localStorage.setItem("Value", jsonString);
+  const str = localStorage.getItem("Value");
+  const parseString = JSON.parse(str);
+  e.value = parseString;
+
+
+
+}
+
 if(notes) {
   notes.forEach((note) => addNewNote(note));
 }
@@ -14,7 +27,7 @@ function addNewNote(text = "") {
 
   note.innerHTML = `
 <div class="tools">
-    <input class="theme" value="Theme..."></input>
+    <input id="theme" class="theme" onchange="localJoy(this)" value=""></input>
     <button class="edit"><i class="fas fa-edit"></i></button>
     <button class="delete"><i class="fas fa-trash-alt"></i></button>
 </div>
@@ -26,8 +39,7 @@ function addNewNote(text = "") {
   let edit_btn = note.querySelector(".edit"),
     del_btn = note.querySelector(".delete"),
     main = note.querySelector(".main"),
-    text_area = note.querySelector("textarea"),
-    theme_edit = note.querySelector(".theme");
+    text_area = note.querySelector("textarea");
 
 
   text_area.value = text;
@@ -52,24 +64,22 @@ function addNewNote(text = "") {
     updateLS();
   });
 
+  
+
 
   document.body.appendChild(note);
 }
 
 function updateLS() {
   const notesText = document.querySelectorAll("textarea");
-  const themeQiymat = document.querySelectorAll(".theme");
 
 
   const notes = [];
-  const themes = [];
 
 
   notesText.forEach(note => notes.push(note.value));
-  themeQiymat.forEach(theme => themes.push(theme.value));
 
 
 
   localStorage.setItem("notes", JSON.stringify(notes));
-  localStorage.setItem("Themes", JSON.stringify(themes));
 }
